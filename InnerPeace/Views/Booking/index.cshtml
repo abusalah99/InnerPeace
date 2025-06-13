@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Booking";
+}
+
+    <h1>Session booking</h1>
+
+<div class="booking-layout">
+  <div class="left-panel">
+    <section class="profile-box">
+      <img src="~/fatima.jpg" alt="Dr. Fatima" class="avatar" style="width: 60px;height: 60px;border-radius: 50%;">
+      <div>
+        <h2>Dr. Fatima</h2>
+        <p class="title">Clinical Psychologist</p>
+        <p class="rating">★★★★★ (28 Reviews)</p>
+      </div>
+    </section>
+
+    <section class="duration-box">
+      <h3>Select session duration:</h3>
+      <div class="radio-group">
+        <label><input type="radio" name="duration" value="60" checked> 60 Minutes</label>
+        <label><input type="radio" name="duration" value="30"> 30 Minutes</label>
+      </div>
+    </section>
+
+    <section class="booking-box">
+      <p><span id="slot-count">0</span> Slot is selected</p>
+      <button class="book-btn" disabled>Book Now 500 EGP</button>
+    </section>
+  </div>
+
+  <div class="right-panel">
+    <section class="slots-box">
+      <div class="calendar-head">
+        <button>&lt;</button>
+        <span>17 Apr 2025 - 21 Apr 2025</span>
+        <button>&gt;</button>
+      </div>
+      <div class="slots d-flex justify-content-center">
+        <div class="day-column">
+          <h4>Thu 17</h4>
+          <button class="slot">09:00 AM</button>
+          <button class="slot">01:00 PM</button>
+          <button class="slot">03:00 PM</button>
+          <button class="slot">05:00 PM</button>
+        </div>
+        <div class="day-column">
+          <h4>Fri 18</h4>
+          <button class="slot">10:00 AM</button>
+          <button class="slot">02:00 PM</button>
+          <button class="slot">04:00 PM</button>
+        </div>
+        <div class="day-column">
+          <h4>Sat 19</h4>
+          <button class="slot">11:00 AM</button>
+          <button class="slot">01:00 PM</button>
+          <button class="slot">03:00 PM</button>
+          <button class="slot">05:00 PM</button>
+        </div>
+        <div class="day-column">
+          <h4>Sun 20</h4>
+          <button class="slot">09:00 AM</button>
+          <button class="slot">01:00 PM</button>
+          <button class="slot">03:00 PM</button>
+          <button class="slot">05:00 PM</button>
+        </div>
+        <div class="day-column">
+          <h4>Mon 21</h4>
+          <button class="slot">10:00 AM</button>
+          <button class="slot">02:00 PM</button>
+          <button class="slot">04:00 PM</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="timezone-box">
+      <p>All times are <strong>Cairo</strong></p>
+    </div>
+        
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.slot').forEach(slot => {
+    slot.addEventListener('click', () => {
+      slot.classList.toggle('selected');
+
+      const selectedSlots = document.querySelectorAll('.slot.selected').length;
+      document.getElementById('slot-count').innerText = selectedSlots;
+
+      const bookBtn = document.querySelector('.book-btn');
+      bookBtn.innerText = `Book Now ${selectedSlots * 0} EGP`;
+    });
+  });
+
+</script>

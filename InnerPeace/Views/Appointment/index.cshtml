@@ -1,0 +1,209 @@
+﻿@{
+    ViewData["Title"] = "Appointment";
+    ViewData["Style"] = "appointment";
+}
+
+<div class="appointments-tabs">
+    <button class="tab-btn active" data-tab="previous">Previous</button>
+    <button class="tab-btn" data-tab="current">Current</button>
+</div>
+
+<div class="appointments-list">
+    
+    <div class="appointment-card" data-appointment-id="1">
+        <div class="appointment-content " data-bs-toggle="modal" data-bs-target="#detailsModal" >
+            <div class="therapist-info">
+                <img src="~/bahaa.webp" alt="Dr Bahaa Mahmoud" class="therapist-image">
+                <div class="therapist-details">
+                    <h3>Dr Bahaa Mahmoud</h3>
+                    <p class="therapist-title">Psychiatrist</p>
+                </div>
+                <span class="status-badge completed">Completed</span>
+            </div>
+            <div class="appointment-time">
+                <div class="time-item">
+                    <i class="far fa-calendar"></i>
+                    <span>2025-03-06</span>
+                </div>
+                <div class="time-item">
+                    <i class="far fa-clock"></i>
+                    <span>04:57 PM</span>
+                </div>
+                <div class="time-item">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>60 Min</span>
+                </div>
+            </div>
+        </div>
+        <div class="appointment-actions">
+            <button class="action-btn green"
+                    onclick="location.href='@Url.Action("Index", "Booking", new { id = Guid.NewGuid() })'">
+                    Book Again</button>
+            <button class="action-btn" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                Leave Review
+            </button>
+        </div>
+    </div>
+    <div class="appointment-card" data-appointment-id="1">
+        <div class="appointment-content">
+            <div class="therapist-info">
+                <img src="~/bahaa.webp" alt="Dr Bahaa Mahmoud" class="therapist-image">
+                <div class="therapist-details">
+                    <h3>Dr Bahaa Mahmoud</h3>
+                    <p class="therapist-title">Psychiatrist</p>
+                </div>
+                <span class="status-badge completed">Completed</span>
+            </div>
+            <div class="appointment-time">
+                <div class="time-item">
+                    <i class="far fa-calendar"></i>
+                    <span>2025-03-06</span>
+                </div>
+                <div class="time-item">
+                    <i class="far fa-clock"></i>
+                    <span>04:57 PM</span>
+                </div>
+                <div class="time-item">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>60 Min</span>
+                </div>
+            </div>
+        </div>
+        <div class="appointment-actions">
+            <button class="action-btn green">Book Again</button>
+            <button class="action-btn" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                Leave Review
+            </button>
+        </div>
+    </div>
+</div>
+
+@section BelowMain {
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="ModalLabel" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ModalLabel">Write a Review</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="review-form" id="reviewForm">
+                    <div class="modal-body">
+                    
+                        <input type="hidden" id="appointmentId">
+                        <div class="rating-group">
+                            <label>Communication</label>
+                            <div class="stars" data-rating="communication">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <div class="rating-group">
+                            <label>Understanding of the situation</label>
+                            <div class="stars" data-rating="understanding">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <div class="rating-group">
+                            <label>Providing effective solutions</label>
+                            <div class="stars" data-rating="solutions">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <div class="rating-group">
+                            <label>Overall experience</label>
+                            <div class="stars" data-rating="overall">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <textarea placeholder="Write your review here..." required></textarea>
+          
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="action-btn green w-90">Submit Review</button>
+                    </div>
+                </form>
+                <script>
+     const stars = document.querySelectorAll('.star');
+     
+     stars.forEach(star => {
+         star.addEventListener('click', () => {
+             const value = parseInt(star.dataset.value);
+             const starsContainer = star.parentElement;
+             
+             starsContainer.querySelectorAll('.star').forEach(s => {
+                 s.classList.toggle('active', parseInt(s.dataset.value) <= value);
+             });
+         });
+     });
+     
+     function resetReviewForm() {
+         stars.forEach(star => star.classList.remove('active'));
+         reviewForm.querySelector('textarea').value = '';
+     }
+     const modal = document.getElementById("reviewModal");
+     
+     modal.addEventListener("shown.bs.modal", () => {
+         modal.removeAttribute("aria-hidden");
+     });
+     
+     modal.addEventListener("hidden.bs.modal", () => {
+         modal.setAttribute("aria-hidden", "true");
+         resetReviewForm();
+     });
+     
+</script>
+            </div>
+        </div>
+    </div>
+}
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="ModalLabel" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="details-content p-5">
+                <div class="appointment-details">
+                    <img src="~/bahaa.webp" alt="Dr Bahaa Mahmoud" class="therapist-image">
+                    <h2>Dr Bahaa Mahmoud</h2>
+                    <p><strong>Title:</strong> Psychiatrist</p>
+                    <p><strong>Type:</strong> consultations</p>
+                    <p><strong>Date:</strong> 2025-03-06</p>
+                    <p><strong>Time:</strong> 04:57 PM</p>
+                    <p><strong>Duration:</strong> 60 Min</p>
+                    <span class="status-badge completed">
+                        Completed
+                    </span>
+                    <div class="prescription-section">
+                        <h3>Medical Prescription</h3>
+                        <p>Antidepressants - Take once daily before bed</p>
+                    </div>
+                    <div class="notes-section">
+                        <h3>Notes</h3>
+                        <p>Follow-up required in 2 weeks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

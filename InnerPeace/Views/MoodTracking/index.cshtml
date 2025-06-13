@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Mood Tracking";
+}
+<h1 class="section-title">Track Your Mood</h1>
+<div class="mood-tracking-container">
+    <div class="mood-input">
+        <h2>How are you feeling today?</h2>
+        <div class="mood-options">
+            <button class="mood-btn " data-mood="amazing">
+                😄 Amazing
+            </button>
+            <button class="mood-btn" data-mood="good">
+                🙂 Good
+            </button>
+            <button class="mood-btn" data-mood="okay">
+                😐 Okay
+            </button>
+            <button class="mood-btn" data-mood="down">
+                😔 Down
+            </button>
+            <button class="mood-btn" data-mood="awful">
+                😢 Awful
+            </button>
+        </div>
+        <div class="mood-notes">
+            <h3>Add a note (optional)</h3>
+            <textarea placeholder="Write your thoughts here..."></textarea>
+            <button class="save-btn">Save Entry</button>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+            
+            this.classList.add('selected');
+        });
+    });
+</script>

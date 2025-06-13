@@ -1,0 +1,100 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InnerPeace</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    @if (!string.IsNullOrEmpty(ViewData["Style"]?.ToString()))
+    {
+        <link rel="stylesheet" href="~/css/@(ViewData["Style"]).css" />
+    }
+    else
+    {
+        <link rel="stylesheet" href="~/@(nameof(InnerPeace)).styles.css" />
+    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+<body>
+<header class="navbar">
+    <div class="logo-container">
+        <a href="/"> 
+            <img src="~/logo.png" alt="Inner Peace logo" class="logo" />
+            <div class="brand-text">
+                <h1>Inner peace</h1>
+                <span>Hope, Help, Heal...</span>
+            </div>
+        </a>
+    </div>
+    <nav class="nav-links">
+        <a asp-controller="Therapist" asp-action="Index">Therapists List</a>
+        <a asp-controller="MoodTracking" asp-action="Index">Mood Tracking</a>
+        <a asp-controller="FindTherapist" asp-action="Index">Find A Therapist</a>
+        <a asp-controller="Appointment" asp-action="Index">Appointments</a>
+        <a asp-controller="Support" asp-action="Index">Support</a>
+    </nav>
+
+    <div class="auth-buttons">
+        <a href="" class="btn-outline">Sign in</a>
+        <a href="" class="btn-filled">Sign up</a>
+    </div>
+</header>
+
+<main class="container p-5">
+    @RenderBody()
+</main>
+
+@await RenderSectionAsync("BelowMain", required: false)
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="brand-section">
+            <div class="brand-logo">Inner Peace</div>
+            <div class="brand-tagline">Hope, Help, Heal...</div>
+            <p class="brand-description">
+                You are not alone
+            </p>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">Blog</h3>
+            <ul class="footer-links">
+                <li><a href="#">Terms and conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">Resources</h3>
+            <ul class="footer-links">
+
+                <li><a href="#">Emergency numbers</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">Join us</h3>
+            <div class="join-section">
+                <a href="#" class="join-btn join-client">Join as a Client</a>
+                <div class="join-divider">Or</div>
+                <a href="#" class="join-btn join-therapist">Join as a Therapist</a>
+                <p class="sign-in-text">If you have an account <a href="#">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>All rights reserved to Inner Peace 2025</p>
+        
+    </div>
+</footer>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/carousel.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿@using InnerPeace.Entities
+@model InnerPeace.ViewModels.TherapistViewModel
+@{
+    ViewData["Title"] = "Therapist";
+}
+
+    <h1 class="section-title">Our Therapists</h1>
+
+    <div class="breadcrumbs">
+        <a href="/">Home</a> &gt; Therapists list
+    </div>
+
+    <div class="page-container">
+        <aside class="filters-sidebar">
+            <h2>Filters</h2>
+            <hr>
+            @if (Model.Specializations.Any())
+            {
+                <div class="filter-section">
+                    <p class="title">🔺 Areas of interest</p>
+                    <select data-filter="specialization">
+                        <option value="">Select Specialization</option>
+                        @foreach (var specialization in Model.Specializations)
+                        {
+                            <option value="@specialization.Id">@specialization.Name</option>
+                        }
+                    </select>
+                </div> 
+            }
+            
+            @if (Model.Languages.Count > 1)
+            {
+                <div class="filter-section">
+                    <p class="title">🗣️ Languages Spoken</p>
+                    @foreach (var language in Model.Languages)
+                    {
+                        <label><input type="checkbox" data-filter="language" value="@language.Id"> @language.Name</label>
+                    }
+                </div>
+            }
+            @if (@Model.Durations.Any())
+            {
+                <div class="filter-section">
+                    <p class="title">⏱ Duration</p>
+                    <label><input type="radio" name="duration" value="all" data-filter="duration" checked> All</label>
+                    @foreach (var duration in Model.Durations)
+                    {
+                        <label><input type="radio" name="duration" value="@duration.Id" data-filter="duration"> @duration.Duration Min</label>
+                    }
+                </div>  
+            }
+
+            <div class="filter-section">
+                <p class="title">⚧ Therapist Gender</p>
+                <label><input type="radio" name="gender" value="all" data-filter="gender" checked> All</label>
+                <label><input type="radio" name="gender" value="male" data-filter="gender"> Male</label>
+                <label><input type="radio" name="gender" value="female" data-filter="gender"> Female</label>
+            </div>
+            
+            <div class="filter-section">
+                <p class="title">💵 Session Fees <span class="currency">EGP</span></p>
+                <div class="range-container">
+                    <span class="range-label">140</span>
+                    <input type="range" min="140" max="700" value="700" data-filter="fees-range">
+                    <span class="range-label">700</span>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <p class="title">🎓 Education Level</p>
+                <label><input type="checkbox" data-filter="education" value="bachelor"> Bachelor's Degree</label>
+                <label><input type="checkbox" data-filter="education" value="master"> Master's Degree</label>
+                <label><input type="checkbox" data-filter="education" value="phd"> PhD</label>
+                <label><input type="checkbox" data-filter="education" value="md"> MD</label>
+            </div>
+            
+            <div class="filter-section">
+                <button class="reset-button">Reset Filter</button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="therapist-card-container">
+                <div class="therapist-card"
+                     data-name="fatima AlYoussef"
+                     data-specialization="Psychologist"
+                     data-rating="4.8"
+                     data-interests="Anxiety Disorders, borderline personality disorder, Trauma and PTSD, Relationship issues, Stress"
+                     data-fees="1800"
+                     data-availability=""
+                     data-gender="female"
+                     data-language=""
+                     data-country=""
+                     data-education=""
+                     data-practice-type=""
+                     data-prescription="psychologist"
+                     data-promocodes=""
+                     data-bundles="">
+                    <img src="~/fatima.jpg" alt="fatima AlYoussef" style="width: 200px;height: 200px;border-radius: 50%;">
+                    <h3 class="therapist-name">fatima AlYoussef</h3>
+                    <p class="therapist-specialization">Psychologist</p>
+                    <div class="rating">★★★★☆ (4.8)</div>
+                    <p class="interests">
+                        <span>Anxiety Disorders</span>
+                        <span>borderline personality disorder</span>
+                        <span>Trauma and PTSD</span>
+                        <span>Relationship issues</span>
+                        <span>Stress</span>
+                    </p>
+                    <p class="session-fees">Starts from <strong>500 EGP</strong> / 60 Min</p>
+                    <div class="actions">
+                        <button class="view-profile-btn" 
+                                onclick="location.href='@Url.Action("Index", "TherapistProfile", new { id = Guid.NewGuid() })'">
+                            View Profile
+                        </button>
+                        <button
+                            class="book-now-btn" data-therapist="fatima AlYoussef"
+                            onclick="location.href='@Url.Action("Index", "Booking", new { id = Guid.NewGuid() })'">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+                        <div class="therapist-card-container">
+                <div class="therapist-card"
+                     data-name="fatima AlYoussef"
+                     data-specialization="Psychologist"
+                     data-rating="4.8"
+                     data-interests="Anxiety Disorders, borderline personality disorder, Trauma and PTSD, Relationship issues, Stress"
+                     data-fees="1800"
+                     data-availability=""
+                     data-gender="female"
+                     data-language=""
+                     data-country=""
+                     data-education=""
+                     data-practice-type=""
+                     data-prescription="psychologist"
+                     data-promocodes=""
+                     data-bundles="">
+                    <img src="~/fatima.jpg" alt="fatima AlYoussef" style="width: 200px;height: 200px;border-radius: 50%;">
+                    <h3 class="therapist-name">fatima AlYoussef</h3>
+                    <p class="therapist-specialization">Psychologist</p>
+                    <div class="rating">★★★★☆ (4.8)</div>
+                    <p class="interests">
+                        <span>Anxiety Disorders</span>
+                        <span>borderline personality disorder</span>
+                        <span>Trauma and PTSD</span>
+                        <span>Relationship issues</span>
+                        <span>Stress</span>
+                    </p>
+                    <p class="session-fees">Starts from <strong>500 EGP</strong> / 60 Min</p>
+                    <div class="actions">
+                        <button class="view-profile-btn" 
+                                onclick="location.href='@Url.Action("Index", "TherapistProfile", new { id = Guid.NewGuid() })'">
+                            View Profile
+                        </button>
+                        <button
+                            class="book-now-btn" data-therapist="fatima AlYoussef"
+                            onclick="location.href='@Url.Action("Index", "Booking", new { id = Guid.NewGuid() })'">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+    </div>
