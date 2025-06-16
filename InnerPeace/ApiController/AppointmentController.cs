@@ -13,7 +13,7 @@ public class AppointmentController(ApplicationDbContext context) : ControllerBas
     public async Task<IActionResult> GetAvailableSlots([FromBody] AvailabilityRequestModel request)
     {
         var doctor = await context.Doctors
-            .Include(d => d.Sessions)
+            .Include(d => d.Sessions)!
             .ThenInclude(d=>d.Duration)
             .FirstOrDefaultAsync(d => d.Id == request.DoctorId);
 
@@ -23,7 +23,7 @@ public class AppointmentController(ApplicationDbContext context) : ControllerBas
         var available = GetAvailable(
             request.Date,
             doctor.Sessions?.ToList() ?? [],
-            doctor.SessionSettings,
+            doctor.SessionSettings ?? new DoctorSessionSettings(),
             request.Duration
         );
         

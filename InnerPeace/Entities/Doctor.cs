@@ -12,11 +12,9 @@ public class Doctor : BaseEntity
     public string Name { get; set; } = null!;
     public string ProfessionTitle { get; set; } = null!;
     public bool IsMale { get; set; }
-    public DoctorSessionSettings SessionSettings { get; set; } = null!;
-    public ICollection<Education> Educations { get; set; } = null!;
-    [JsonIgnore]
+    public DoctorSessionSettings? SessionSettings { get; set; }
+    public virtual ICollection<Education> Educations { get; set; } = null!;
     public virtual ICollection<DoctorLanguage> DoctorLanguages { get; set; } = null!;
-    [JsonIgnore]
     public virtual ICollection<DoctorCountry> DoctorCountries { get; set; } = null!;
     public virtual ICollection<DoctorSpecialization> DoctorSpecializations { get; set; } = null!;
     public virtual ICollection<Rating>? Ratings { get; set; }

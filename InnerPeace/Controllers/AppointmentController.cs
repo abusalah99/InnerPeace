@@ -13,9 +13,11 @@ public class AppointmentController(ApplicationDbContext context) : Controller
         string userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
 
         Guid.TryParse(userIdString, out Guid userId);
-        
-        var session = await context.Sessions.Where(s=>s.UserId == userId).Include(s => s.Doctor)
-            .Include(s=>s.Duration)
+
+        var session = await context.Sessions.Where(s => s.UserId == userId)
+            .Include(s => s.Doctor)
+            .Include(s => s.Duration)
+            .Include(s => s.Rating)
             .ToListAsync();
 
         return View(session);

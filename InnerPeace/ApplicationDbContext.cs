@@ -35,14 +35,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(e => e.Phone).HasMaxLength(14).IsRequired();
             entity.Property(e => e.Password).IsRequired();
             entity.Property(e => e.ImagePath).IsRequired();
-            
+
             entity.Property(e => e.SessionSettings)
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, _jsonOptions),
-                    v => JsonSerializer.Deserialize<DoctorSessionSettings>(v, _jsonOptions) ?? new DoctorSessionSettings()
+                    v => JsonSerializer.Deserialize<DoctorSessionSettings>(v, _jsonOptions) ??
+                         new DoctorSessionSettings()
                 )
-                .HasColumnType("jsonb")
-                .IsRequired();
+                .HasColumnType("jsonb");
 
             entity.Property(e => e.SessionSettings)
                 .Metadata.SetValueComparer(new ValueComparer<DoctorSessionSettings>(
@@ -270,14 +270,24 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     {
         var entries = ChangeTracker.Entries()
             .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
-
+        
         foreach (var entry in entries)
         {
+            var properties = entry.Properties;
+
+            var propertyEntries = properties.ToList();
             if (entry.State == EntityState.Added)
             {
-                entry.Property("CreatedAt").CurrentValue = DateTime.Now;
+                if (propertyEntries.Any(p => p.Metadata.Name == "CreatedAt"))
+                {
+                    entry.Property("CreatedAt").CurrentValue = DateTime.Now;
+                }
             }
-            entry.Property("UpdatedAt").CurrentValue = DateTime.Now;
+
+            if (propertyEntries.Any(p => p.Metadata.Name == "UpdatedAt"))
+            {
+                entry.Property("UpdatedAt").CurrentValue = DateTime.Now;
+            }
         }
 
         return base.SaveChangesAsync(cancellationToken);

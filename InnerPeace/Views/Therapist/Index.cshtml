@@ -103,10 +103,10 @@
         <div class="therapist-card-container">
             @foreach (var doctor in Model.Doctor)
             {
-                var minEntry = doctor.SessionSettings.DurationPrice.OrderBy(kv => kv.Value).First();
+                var minEntry = doctor.SessionSettings?.DurationPrice.OrderBy(kv => kv.Value).FirstOrDefault() ?? new ();
                 var minDuration = minEntry.Key;
                 var minPrice = minEntry.Value;
-                var rating = CalculateAverageFromRatings(doctor.Ratings.ToList());
+                var rating = CalculateAverageFromRatings(doctor.Ratings?.ToList() ?? []);
 
                 <div class="therapist-card"
                      data-name="@doctor.Name"
@@ -116,13 +116,13 @@
                      data-availability=""
                      data-gender="@(doctor.IsMale ? "male" : "female")"
                      data-language="@string.Join(",", doctor.DoctorLanguages.Select(d=>d.Language.Name))"
-                     data-duration="@string.Join(",", doctor.SessionSettings.DurationPrice.Select(kv=>kv.Key.ToString()))"
+                     data-duration="@string.Join(",", doctor.SessionSettings?.DurationPrice.Select(kv=>kv.Key.ToString() ) ?? [])"
                      data-education="@string.Join(",", doctor.Educations.Select(e=>e.EducationDegree.Degree))"
                      data-practice-type="">
                     <img src="@doctor.ImagePath" alt="@doctor.Name" style="width: 200px;height: 200px;border-radius: 50%;">
                     <h3 class="therapist-name">@doctor.Name</h3>
                     <p class="therapist-specialization">@doctor.ProfessionTitle</p>
-                    <div class="rating">@RenderStarsFromRatings(doctor.Ratings.ToList()) @rating.ToString("n2")</div>
+                    <div class="rating">@RenderStarsFromRatings(doctor.Ratings?.ToList() ?? []) @rating.ToString("n2")</div>
                     <p class="interests">
                         @foreach (var specialization in doctor.DoctorSpecializations.Select(e => e.Specialization))
                         {
@@ -135,7 +135,7 @@
                                 onclick="location.href='@Url.Action("Index", "TherapistProfile", new { id = doctor.Id })'">
                             View Profile
                         </button>
-                        @if (User.Identity?.IsAuthenticated ?? false)
+                        @if ((User.Identity?.IsAuthenticated ?? false) && (doctor.SessionSettings?.IsAvailable ?? false) )
                         {
                             <button
                                 class="book-now-btn" data-therapist="@doctor.Name"

@@ -27,13 +27,26 @@ builder.Services.AddSession(options =>
 });
 
 
-builder.Services.AddAuthentication("MyCookieAuth")
-    .AddCookie("MyCookieAuth", options =>
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = "UserScheme";         
+        options.DefaultAuthenticateScheme = "UserScheme";
+        options.DefaultChallengeScheme = "UserScheme";
+    })
+    .AddCookie("DoctorScheme", options =>
+    {
+        options.LoginPath = "/Account/doctor/login";
+        options.AccessDeniedPath = "/Account/access-denied"; 
+        options.Cookie.Name = "DoctorCookie";
+    })
+    .AddCookie("UserScheme", options =>
     {
         options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/access-denied"; 
+        options.Cookie.Name = "UserCookie"; 
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     });
-builder.Services.AddAuthorization();
+
 
 
 var app = builder.Build();

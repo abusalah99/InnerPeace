@@ -35,7 +35,7 @@ public class TherapistController(ApplicationDbContext context) : Controller
             .ThenInclude(d => d.Specialization);
 
         var doctors = await query.ToListAsync();
-        doctors = doctors.Where(e => e.SessionSettings.IsAvailable).ToList();
+        doctors = doctors.ToList();
         
         var languages = await context.Languages.ToListAsync();
         var educationDegreeList = await context.EducationDegree.ToListAsync();

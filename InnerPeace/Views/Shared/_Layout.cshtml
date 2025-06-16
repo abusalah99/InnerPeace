@@ -30,7 +30,7 @@
     </div>
     <nav class="nav-links">
         <a asp-controller="Therapist" asp-action="Index">Therapists List</a>
-        @if (User.Identity?.IsAuthenticated ?? false)
+        @if (User.Identity?.IsAuthenticated == true && User.IsInRole("User"))
         {
             <a asp-controller="MoodTracking" asp-action="Index">Mood Tracking</a>
             <a asp-controller="FindTherapist" asp-action="Index">Find A Therapist</a>
@@ -90,10 +90,10 @@ else
             <h3 class="footer-title">Join us</h3>
 
             <div class="join-section">
-                <a href="#" class="join-btn join-client">Join as a Client</a>
+                <a asp-controller="Account" asp-action="Register" class="join-btn join-client">Join as a Client</a>
                 <div class="join-divider">Or</div>
-                <a href="#" class="join-btn join-therapist">Join as a Therapist</a>
-                <p class="sign-in-text">If you have an account <a href="#">Sign in</a></p>
+                <a asp-controller="Account" asp-action="DoctorRegister" class="join-btn join-therapist">Join as a Therapist</a>
+                <p class="sign-in-text">If you have an account <a asp-controller="Account" asp-action="Login">Sign in</a></p>
             </div>
 
         </div>

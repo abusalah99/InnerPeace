@@ -30,9 +30,12 @@
         <div class="radio-group">
 @{
   var first = true;
+  
+  var durationPriceDict = Model.SessionSettings?.DurationPrice;
+  var durationPrices = durationPriceDict?.OrderBy(kv => kv.Key) ?? Enumerable.Empty<KeyValuePair<int, double>>();
 }
 
-          @foreach (var duration in Model.SessionSettings.DurationPrice.OrderBy(kv => kv.Key))
+          @foreach (var duration in durationPrices )
           {
           <label>
             <input type="radio" name="duration" data-price="@duration.Value"  value="@duration.Key" @(first ? "checked" : "")> @duration.Key Minutes
@@ -182,10 +185,8 @@
     const dateAttr = selectedSlot.closest('.day-column')?.getAttribute('data-date');
     const timeStr = selectedSlot.innerText;
     const time24 = convertTo24Hour(timeStr);
-    const dateTime = `${dateAttr}T${time24}`;
-
     // Fill the hidden form
-    document.getElementById('selectedTime').value = dateTime;
+    document.getElementById('selectedTime').value = `${dateAttr}T${time24}`;
     document.getElementById('selectedPrice').value = price;
     document.getElementById('selectedDuration').value = duration;
 
@@ -222,22 +223,8 @@
 
 @functions
 {
-  private string RenderStars(InnerPeace.Entities.Rating rating)
-  {
-    var ratings = new[]
-    {
-      (int)rating.Communication,
-      (int)rating.UnderstandingOfTheSituation,
-      (int)rating.ProvidingEffectiveSolution,
-      (int)rating.CommitmentToStartAndEndTimes
-    };
 
-    var avg = (int)Math.Round(ratings.Average());
-
-    return new string('★', avg).PadRight(5, '☆');
-  }
-    
-  private List<int> GetRatingValues(InnerPeace.Entities.Rating rating)
+  private List<int> GetRatingValues(Rating rating)
   {
     return
     [
@@ -260,17 +247,4 @@
     return new string('★', avg).PadRight(5, '☆');
   }
     
-  private string GetTimeAgo(DateTime dateTime)
-  {
-    var span = DateTime.Now - dateTime;
-
-    if (span.TotalMinutes < 60)
-      return $"{(int)span.TotalMinutes} minutes ago";
-    if (span.TotalHours < 24)
-      return $"{(int)span.TotalHours} hours ago";
-    if (span.TotalDays < 30)
-      return $"{(int)span.TotalDays} days ago";
-    
-    return span.TotalDays < 365 ? $"{(int)(span.TotalDays / 30)} months ago" : $"{(int)(span.TotalDays / 365)} years ago";
-  }
 }

@@ -5,6 +5,26 @@
       "PackagePath": "staticwebassets\\InnerPeace.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\Countries\\egypt.png",
+      "PackagePath": "staticwebassets\\Countries\\egypt.png"
+    },
+    {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\Profiles\\09d7261a-6e8d-46ea-8c19-420836a069e4.png",
+      "PackagePath": "staticwebassets\\Profiles\\09d7261a-6e8d-46ea-8c19-420836a069e4.png"
+    },
+    {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\Profiles\\6f4e4c66-dc52-42d3-8d00-b0a615b2fcf5.png",
+      "PackagePath": "staticwebassets\\Profiles\\6f4e4c66-dc52-42d3-8d00-b0a615b2fcf5.png"
+    },
+    {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\Profiles\\a23c0581-f0dc-4b12-9d11-919327678625.png",
+      "PackagePath": "staticwebassets\\Profiles\\a23c0581-f0dc-4b12-9d11-919327678625.png"
+    },
+    {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\Profiles\\bdd910e1-a88b-484c-8356-2559c416e36a.png",
+      "PackagePath": "staticwebassets\\Profiles\\bdd910e1-a88b-484c-8356-2559c416e36a.png"
+    },
+    {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\about1.png",
       "PackagePath": "staticwebassets\\about1.png"
     },
@@ -33,12 +53,12 @@
       "PackagePath": "staticwebassets\\css\\layout.css"
     },
     {
-      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\fatima.jpg",
-      "PackagePath": "staticwebassets\\fatima.jpg"
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\css\\schedule.css",
+      "PackagePath": "staticwebassets\\css\\schedule.css"
     },
     {
-      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\germeen.jpeg",
-      "PackagePath": "staticwebassets\\germeen.jpeg"
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\fatima.jpg",
+      "PackagePath": "staticwebassets\\fatima.jpg"
     },
     {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\help.png",
@@ -303,10 +323,6 @@
     {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\merry.webp",
       "PackagePath": "staticwebassets\\merry.webp"
-    },
-    {
-      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\mohamed.png",
-      "PackagePath": "staticwebassets\\mohamed.png"
     },
     {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\noha.webp",

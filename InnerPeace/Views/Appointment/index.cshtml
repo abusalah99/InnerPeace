@@ -4,14 +4,27 @@
     ViewData["Style"] = "appointment";
 
     var currentSessions = Model.Where(session =>
-    {
-        var time = session.DateTime;
-        var duration = session.Duration.Duration;
-        var sessionEnd = time.AddMinutes(duration);
-        var now = DateTime.Now;
+        {
+            var time = session.DateTime;
+            var duration = session.Duration.Duration;
+            var sessionEnd = time.AddMinutes(duration);
+            var now = DateTime.Now;
 
-        return !(now > sessionEnd); // not completed = current (Pending or Now)
-    }).ToList();
+            return !(now > sessionEnd);
+        })
+        .OrderByDescending(session =>
+        {
+            var time = session.DateTime;
+            var duration = session.Duration.Duration;
+            var sessionEnd = time.AddMinutes(duration);
+            var now = DateTime.Now;
+            
+            if (now >= time && now <= sessionEnd)
+                return 2;
+            return 1;
+        })
+        .ThenBy(session => session.DateTime)
+        .ToList();
 
     var previousSessions = Model.Where(session =>
     {

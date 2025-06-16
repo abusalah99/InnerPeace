@@ -10,41 +10,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9138002-3e3e-412e-b3b7-a9ce00423238" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/InnerPeace/AuthHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Controllers/AccountController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Entities/EducationDegree.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Models/AvailabilityRequestModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Models/VideoCallMeetingModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/TimeZoneInterceptor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Account/Login.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Account/Register.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Shared/_AuthLayout.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/InnerPeace/wwwroot/css/booking.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Controllers/DoctorAppointmentController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Controllers/DoctorScheduleController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/ViewModels/DoctorRegisterViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/ViewModels/EducationInputModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Account/AccessDenied.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Account/DoctorLogin.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Account/DoctorRegister.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/DoctorAppointment/Index.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/DoctorSchedule/Index.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/Views/Shared/_DoctorLayout.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/wwwroot/Countries/egypt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InnerPeace/wwwroot/css/schedule.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InnerPeace/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InnerPeace/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/ApiController/AppointmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/ApiController/AppointmentController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/AccountController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/AppointmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/AppointmentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/BookingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/BookingController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/FindTherapistController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/FindTherapistController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/MoodTrackingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/MoodTrackingController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/TherapistController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/TherapistController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Controllers/TherapistProfileController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Controllers/TherapistProfileController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/Doctor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/Doctor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/Education.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/Education.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/Rating.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/Rating.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/Session.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/Session.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Enum/RatingEnum.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Enum/RatingEnum.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/DoctorCountry.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/DoctorCountry.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/Entities/DoctorLanguage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Entities/DoctorLanguage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/InnerPeace.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/InnerPeace.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/ViewModels/TherapistViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/ViewModels/TherapistViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Appointment/index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/Appointment/index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Booking/index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/Booking/index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Booking/index.cshtml.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Views/FindTherapist/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/FindTherapist/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/Home/Index.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/Views/MoodTracking/index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/MoodTracking/index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Shared/_AuthLayout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/Shared/_AuthLayout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Views/Therapist/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/Therapist/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/Views/TherapistProfile/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/Views/TherapistProfile/Index.cshtml" afterDir="false" />
@@ -56,21 +48,19 @@
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.dll" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/InnerPeace.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/ref/InnerPeace.dll" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/ref/InnerPeace.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/refint/InnerPeace.dll" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/refint/InnerPeace.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/scopedcss/Views/Booking/index.cshtml.rz.scp.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/scopedcss/bundle/InnerPeace.styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/scopedcss/bundle/InnerPeace.styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/scopedcss/projectbundle/InnerPeace.bundle.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/scopedcss/projectbundle/InnerPeace.bundle.scp.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets.development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets.pack.json" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets/msbuild.InnerPeace.Microsoft.AspNetCore.StaticWebAssets.props" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/obj/Debug/net8.0/staticwebassets/msbuild.InnerPeace.Microsoft.AspNetCore.StaticWebAssets.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InnerPeace/wwwroot/css/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/wwwroot/css/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InnerPeace/wwwroot/js/findTherapist.js" beforeDir="false" afterPath="$PROJECT_DIR$/InnerPeace/wwwroot/js/findTherapist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/wwwroot/germeen.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/InnerPeace/wwwroot/mohamed.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +134,9 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -232,7 +225,9 @@
       <workItem from="1749717868978" duration="19700000" />
       <workItem from="1749806361857" duration="14280000" />
       <workItem from="1749849100800" duration="34606000" />
-      <workItem from="1750026896521" duration="28513000" />
+      <workItem from="1750026896521" duration="31485000" />
+      <workItem from="1750089079604" duration="12996000" />
+      <workItem from="1750107261156" duration="8838000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -258,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749832581130</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750056534895</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1750056534895</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +284,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="init" />
     <MESSAGE value="jj" />
-    <option name="LAST_COMMIT_MESSAGE" value="jj" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -298,32 +302,6 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/InnerPeace/Controllers/BookingController.cs</url>
-          <line>55</line>
-          <properties documentPath="C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\Controllers\BookingController.cs" containingFunctionPresentation="Method 'ReserveSession'">
-            <startOffsets>
-              <option value="1806" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1847" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/InnerPeace/ApiController/AppointmentController.cs</url>
-          <line>90</line>
-          <properties documentPath="C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\ApiController\AppointmentController.cs" containingFunctionPresentation="Method 'ExcludeReservedTimes'">
-            <startOffsets>
-              <option value="3076" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3109" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -34,7 +34,20 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     
 }
-
+.header-text {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+.header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid rgb(32, 155, 155);
+}
 
 .logo-container {
     display: flex;
