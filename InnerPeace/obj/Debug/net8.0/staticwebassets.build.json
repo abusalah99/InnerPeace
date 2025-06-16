@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6VuWgG3i8q1Mkx0J/THw2Rr3PonUwpWdpcj3Cba7vFc=",
+  "Hash": "c7fGq2exWc1a1Qm1dKSrDY+ycwiLIQNlHNnkmGakmuw=",
   "Source": "InnerPeace",
   "BasePath": "_content/InnerPeace",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\appointment.css"
+    },
+    {
+      "Identity": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\css\\booking.css",
+      "SourceId": "InnerPeace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\",
+      "BasePath": "_content/InnerPeace",
+      "RelativePath": "css/booking.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\booking.css"
     },
     {
       "Identity": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\css\\layout.css",
@@ -300,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\findTherapist.js"
+    },
+    {
+      "Identity": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\js\\therapist-filter.js",
+      "SourceId": "InnerPeace",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\",
+      "BasePath": "_content/InnerPeace",
+      "RelativePath": "js/therapist-filter.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\therapist-filter.js"
     },
     {
       "Identity": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

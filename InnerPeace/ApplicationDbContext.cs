@@ -7,16 +7,18 @@ namespace InnerPeace;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {  
-    public DbSet<Doctor> Doctors { get; set; } = null!;
-    public DbSet<Education> Educations { get; set; } = null!;
-    public DbSet<Country> Countries { get; set; } = null!;
-    public DbSet<Language> Languages { get; set; } = null!;
-    public DbSet<Specialization> Specializations { get; set; } = null!;
-    public DbSet<User> Users { get; set; } = null!;
-    public DbSet<MoodTracking> MoodsTracking{ get; set; } = null!;
-    public DbSet<Rating> Ratings { get; set; } = null!;
-    public DbSet<Session> Sessions { get; set; } = null!;
-    public DbSet<SessionDuration> SessionDurations { get; set; } = null!;
+    public DbSet<Doctor> Doctors { get; set; } 
+    public DbSet<Education> Educations { get; set; } 
+    public DbSet<Country> Countries { get; set; } 
+    public DbSet<Language> Languages { get; set; } 
+    public DbSet<Specialization> Specializations { get; set; }
+    public DbSet<User> Users { get; set; } 
+    public DbSet<MoodTracking> MoodsTracking{ get; set; } 
+    public DbSet<Rating> Ratings { get; set; } 
+    public DbSet<Session> Sessions { get; set; } 
+    public DbSet<SessionDuration> SessionDurations { get; set; } 
+    
+    public DbSet<EducationDegree> EducationDegree { get; set; } 
     
     private readonly JsonSerializerOptions _jsonOptions = new(JsonSerializerDefaults.Web);
 
@@ -54,9 +56,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.HasIndex(e => e.Email).IsUnique();
             entity.HasIndex(e => e.Phone).IsUnique();
             
-            entity.HasOne(e => e.Education)
-                .WithMany(e => e.Doctors)
-                .HasForeignKey(e => e.EducationId)
+            entity.HasMany(e => e.Educations)
+                .WithOne(e => e.Doctor)
+                .HasForeignKey(e => e.DoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
             
             entity.HasMany(e => e.DoctorLanguages)
@@ -72,13 +74,21 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         
         modelBuilder.Entity<Education>(builder =>
         {
-            builder.Property(e => e.Degree)
-                .HasMaxLength(50)
-                .IsRequired();
-
             builder.Property(e => e.University)
                 .HasMaxLength(50)
                 .IsRequired();
+        });
+
+        modelBuilder.Entity<EducationDegree>(builder =>
+        {
+            builder.Property(e => e.Degree)
+                .HasMaxLength(50)
+                .IsRequired();
+            
+            builder.HasMany(e => e.Educations)
+                .WithOne(e=>e.EducationDegree)
+                .HasForeignKey(e=>e.EducationDegreeId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<Country>(builder =>
@@ -165,12 +175,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.Entity<MoodTracking>(entity =>
         {
             entity.HasKey(e => e.Id);
+
             entity.Property(e => e.Mood).IsRequired();
-            entity.Property(e => e.UserId).IsRequired();
             
+            entity.Property(e => e.UserId).IsRequired();
+
             entity.HasOne(e => e.User)
                 .WithMany()
                 .HasForeignKey(e => e.UserId)
+                .IsRequired(true)
                 .OnDelete(DeleteBehavior.Cascade);
         });
         
@@ -215,10 +228,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 .WithMany(e => e.Sessions)
                 .HasForeignKey(e => e.DurationId)
                 .OnDelete(DeleteBehavior.Restrict);
-                
+
             entity.HasOne(e => e.Rating)
-                .WithMany(e => e.Sessions)
-                .HasForeignKey(e => e.RatingId)
+                .WithOne(e => e.Session)
+                .HasForeignKey<Rating>(e => e.SessionId)
                 .OnDelete(DeleteBehavior.SetNull);
                 
             entity.HasOne(e => e.User)
@@ -240,6 +253,16 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 .IsRequired();
         });
 
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            foreach (var property in entityType.GetProperties())
+            {
+                if (property.ClrType == typeof(DateTime))
+                {
+                    property.SetColumnType("timestamp"); 
+                }
+            }
+        }
         base.OnModelCreating(modelBuilder);
     }
 
@@ -252,9 +275,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Property("CreatedAt").CurrentValue = DateTime.UtcNow;
+                entry.Property("CreatedAt").CurrentValue = DateTime.Now;
             }
-            entry.Property("UpdatedAt").CurrentValue = DateTime.UtcNow;
+            entry.Property("UpdatedAt").CurrentValue = DateTime.Now;
         }
 
         return base.SaveChangesAsync(cancellationToken);

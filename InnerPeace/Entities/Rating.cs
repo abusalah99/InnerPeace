@@ -16,5 +16,7 @@ public class Rating : BaseEntity
     public Guid UserId { get; set; }
     [JsonIgnore]
     public virtual User User { get; set; } = null!;
-    public virtual ICollection<Session>? Sessions { get; set; }
+
+    public virtual Session Session { get; set; } = null!;
+    public Guid SessionId { get; set; }
 }

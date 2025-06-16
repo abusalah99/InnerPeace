@@ -1,8 +1,15 @@
-﻿namespace InnerPeace.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace InnerPeace.Controllers;
+[Authorize(Roles = "User")]
 
 [Route("find-therapist")]
-public class FindTherapistController : Controller
+public class FindTherapistController(ApplicationDbContext context) : Controller
 {
     public IActionResult Index()
-        => View();
+    {
+        var specializations = context.Specializations.ToList();
+        
+        return View(specializations);
+    }
 }

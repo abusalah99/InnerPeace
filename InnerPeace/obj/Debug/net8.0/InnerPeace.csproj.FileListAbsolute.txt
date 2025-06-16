@@ -32,7 +32,6 @@ C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\scopedcs
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\scopedcss\Views\Therapist\Index.cshtml.rz.scp.css
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\scopedcss\Views\TherapistProfile\Index.cshtml.rz.scp.css
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\scopedcss\Views\FindTherapist\index.cshtml.rz.scp.css
-C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\scopedcss\Views\Booking\index.cshtml.rz.scp.css
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\bin\Debug\net8.0\Humanizer.dll
@@ -173,3 +172,4 @@ C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\InnerPea
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\InnerPeace.csproj.Up2Date
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\bin\Debug\net8.0\Npgsql.dll
 C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\abu salah\RiderProjects\InnerPeace\InnerPeace\obj\Debug\net8.0\InnerPeace.sourcelink.json

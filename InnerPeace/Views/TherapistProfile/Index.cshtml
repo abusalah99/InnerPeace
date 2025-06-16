@@ -1,42 +1,49 @@
-﻿@{
+﻿@using System.Text
+@using InnerPeace.Entities
+@model InnerPeace.Entities.Doctor
+@{
   ViewData["Title"] = "Therapist Profile";
 }
+
 <div class="profile-card">
   <div class="interests-section">
-    <h2>Interests</h2>
+    <h2>specialization</h2>
     <div class="tags">
-      <span>Adolescence disorders</span>
-      <span>Mood disorders (depression)</span>
-      <span>Anxiety disorders and obsessions</span>
-      <span>Marriage counselling/Relationship Disorders</span>
-      <span>Sleeping disorders</span>
-      <span>Old age disorders</span>
-      <span>Panic disorders</span>
-      <span>Personality disorders</span>
+      @foreach (var specialization in Model.DoctorSpecializations.Select(d => d.Specialization))
+      {
+        <span>@specialization.Name</span>
+      }
     </div>
   </div>
 
   <div class="therapist-info">
-    <img src="~/fatima.jpg" alt="Dr fatima AlYoussef" style="width: 80px;height: 80px;border-radius: 50%;"/>
-    <h3>Dr fatima AlYoussef</h3>
-    <p class="specialty">Psychologist</p>
-    <p class="rating">⭐⭐⭐⭐⭐ <a href="#review">4.81 (21 Reviews)</a></p>
-    <div class="mini-tags">
-      <span>Anxiety Disorders</span>
-      <span>borderline personality disorder (BPD)</span>
-    </div>
+    <img src="@Model.ImagePath" alt="@Model.Name" style="width: 80px;height: 80px;border-radius: 50%;"/>
+    <h3>@Model.Name</h3>
+    <p class="specialty">@Model.ProfessionTitle</p>
+    <p class="rating">@RenderStarsFromRatings(Model.Ratings.ToList()) 
+      <a href="#review">@CalculateAverageFromRatings(Model.Ratings.ToList()) (@Model.Ratings.Count Reviews)</a></p>
     <ul class="info-list">
-      <li><strong>Language:</strong> Arabic</li>
-      <li><strong>Country:</strong>Lebanon</li>
-      <li><strong>Joining Date:</strong> 2 months ago</li>
-      <li><strong>Number of sessions:</strong> 50+ Sessions</li>
-      <li><strong>Fees:</strong> 500 EGP / 60 Minutes | 250 EGP / 30 Minutes</li>
+      <li><strong>Language:</strong> @string.Join(",", Model.DoctorLanguages.Select(d=>d.Language.Name))</li>
+      <li><strong>Country:</strong> @Model.DoctorCountries.Select(d=>d.Country.Name).FirstOrDefault()</li>
+      <li><strong>Joining Date:</strong> @GetTimeAgo(Model.CreatedAt)</li>
+      <li><strong>Number of sessions:</strong> @(Model.Sessions?.Count ?? 0) Sessions</li>
+      @{
+        var durationStrings = string.Join(" | ",
+          Model.SessionSettings.DurationPrice
+            .OrderBy(kv => kv.Value)
+            .Select(kv => $"{kv.Value} EGP / {kv.Key} Minutes")
+        );
+      }
+      <li><strong>Fees: @durationStrings</strong>
     </ul>
     <div class="buttons">
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
       <button class="slot-btn"
-              onclick="location.href='@Url.Action("Index", "Booking", new { id = Guid.NewGuid() })'">
+              onclick="location.href='@Url.Action("Index", "Booking", new { id = Model.Id })'">
         Book Now
       </button>
+    }
     </div>
   </div>
 </div>
@@ -44,74 +51,89 @@
 <!-- Education Section -->
 <div class="education-section">
   <h2>Education</h2>
-  <div class="edu-item">
-    <p class="degree">Master Degree in Clinical Psychology</p>
-    <p class="university">Lebanese University</p>
-    <p class="duration">Jul 2019 - Oct 2021</p>
+  @foreach (var education in Model.Educations)
+  {
+    <div class="edu-item">
+      <p class="degree">@education.EducationDegree</p>
+      <p class="university">@education.University</p>
+      <p class="duration">
+        @education.StartDate.ToString("MMM yyyy") - @education.EndDate.ToString("MMM yyyy")
+      </p>
+    </div>
+  }
+</div>
+
+@{
+  var ratings = Model.Ratings.ToList();
+  var total = ratings.Count;
+
+  double GetAverage(Func<Rating, int> selector) =>
+    total > 0 ? ratings.Select(selector).Average() : 0;
+
+  var categories = new[]
+  {
+    new { Name = "Communication", Value = GetAverage(r => (int)r.Communication) },
+    new { Name = "Understanding of the situation", Value = GetAverage(r => (int)r.UnderstandingOfTheSituation) },
+    new { Name = "Providing effective solutions", Value = GetAverage(r => (int)r.ProvidingEffectiveSolution) },
+    new { Name = "Commitment to start and end times", Value = GetAverage(r => (int)r.CommitmentToStartAndEndTimes) }
+  };
+}
+<!-- Ratings Section -->
+<div class="reviews" id="review">
+  <div class="overall-rating">
+    <p>
+      @RenderStarsFromRatings(ratings)
+      
+      <strong>@CalculateAverageFromRatings(ratings)</strong>
+      (@total Reviews)
+    </p>
   </div>
-  <div class="edu-item">
-    <p class="degree">Bachelor degree in Psychology</p>
-    <p class="university">LEBANESE UNIVERSITY</p>
-    <p class="duration">Sep 2017 - Dec 2018</p>
+
+  <div class="review-bars">
+    @foreach (var cat in categories)
+    {
+      var percentage = (cat.Value / 5.0) * 100;
+      <p>@cat.Name</p>
+      <div class="bar">
+        <div style="width: @percentage%"></div>
+        <span>@cat.Value.ToString("0.##")</span>
+      </div>
+    }
   </div>
 </div>
 
-<!-- Ratings Section -->
-    <div class="reviews" id="review">
-      <div class="overall-rating">
-        <p>⭐⭐⭐⭐⭐ <strong>4.81</strong> (21 Reviews)</p>
-      </div>
-      <div class="review-bars">
-        <p>Communication</p>
-        <div class="bar"><div style="width: 97%"></div><span>4.88</span></div>
-        <p>Understanding of the situation</p>
-        <div class="bar"><div style="width: 96%"></div><span>4.75</span></div>
-        <p>Providing effective solutions</p>
-        <div class="bar"><div style="width: 93%"></div><span>4.63</span></div>
-        <p>Commitment to start and end times</p>
-        <div class="bar"><div style="width: 91%"></div><span>4.5</span></div>
-      </div>
-    </div>
-
-   
-    <div class="review-card">
-        <div class="reviews-slider-wrapper">
-          <div class="reviews-slider" id="reviewsSlider">
-            <div class="review-item">
-              <div class="quote">“</div>
-              <p class="review-text">THE BEST</p>
-              <div class="review-footer">
-                <span class="reviewer">dal...</span>
-                <span class="stars">⭐⭐⭐⭐⭐</span>
-                <span class="date">4 days ago</span>
-              </div>
-            </div>
-            <div class="review-item">
-              <div class="quote">“</div>
-              <p class="review-text">Amazing experience!</p>
-              <div class="review-footer">
-                <span class="reviewer">john...</span>
-                <span class="stars">⭐⭐⭐⭐</span>
-                <span class="date">1 week ago</span>
-              </div>
-            </div>
-            <div class="review-item">
-              <div class="quote">“</div>
-              <p class="review-text">She listens very well and gives clarity.</p>
-              <div class="review-footer">
-                <span class="reviewer">nour...</span>
-                <span class="stars">⭐⭐⭐⭐⭐</span>
-                <span class="date">2 weeks ago</span>
-              </div>
+@if (Model.Ratings?.Any() ?? false)
+{
+     
+  <div class="review-card">
+    <div class="reviews-slider-wrapper">
+      <div class="reviews-slider" id="reviewsSlider">
+        @foreach (var rating in Model.Ratings)
+        {
+          if(string.IsNullOrEmpty(rating.Comment))
+            continue;
+          
+          <div class="review-item">
+            <div class="quote">“</div>
+            <p class="review-text">@rating.Comment</p>
+            <div class="review-footer">
+              <span class="reviewer">@rating.User.Name</span>
+              <span class="stars">@RenderStars(rating)</span>
+              <span class="date">@GetTimeAgo(rating.CreatedAt)</span>
             </div>
           </div>
-        </div>
-        <div class="review-dots" id="reviewDots">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+        }
+
       </div>
+    </div>
+    <div class="review-dots" id="reviewDots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+}
 
 <script>
     const slider = document.getElementById('reviewsSlider');
@@ -131,4 +153,58 @@
       showSlide(currentIndex);
     }, 4000);
   </script>
-  
+  @functions
+  {
+    private string RenderStars(InnerPeace.Entities.Rating rating)
+    {
+      var ratings = new[]
+      {
+        (int)rating.Communication,
+        (int)rating.UnderstandingOfTheSituation,
+        (int)rating.ProvidingEffectiveSolution,
+        (int)rating.CommitmentToStartAndEndTimes
+      };
+
+      var avg = (int)Math.Round(ratings.Average());
+
+      return new string('★', avg).PadRight(5, '☆');
+    }
+    
+    private List<int> GetRatingValues(InnerPeace.Entities.Rating rating)
+    {
+      return
+      [
+        (int)rating.Communication,
+        (int)rating.UnderstandingOfTheSituation,
+        (int)rating.ProvidingEffectiveSolution,
+        (int)rating.CommitmentToStartAndEndTimes
+      ];
+    }
+
+    private double CalculateAverageFromRatings(List<InnerPeace.Entities.Rating> ratings)
+    {
+      var allValues = ratings.SelectMany(GetRatingValues).ToList();
+      return allValues.Any() ? allValues.Average() : 0;
+    }
+
+    private string RenderStarsFromRatings(List<InnerPeace.Entities.Rating> ratings)
+    {
+      var avg = (int)Math.Round(CalculateAverageFromRatings(ratings));
+      return new string('★', avg).PadRight(5, '☆');
+    }
+    
+    private string GetTimeAgo(DateTime dateTime)
+    {
+      var span = DateTime.Now - dateTime;
+
+      if (span.TotalMinutes < 60)
+        return $"{(int)span.TotalMinutes} minutes ago";
+      if (span.TotalHours < 24)
+        return $"{(int)span.TotalHours} hours ago";
+      if (span.TotalDays < 30)
+        return $"{(int)span.TotalDays} days ago";
+      if (span.TotalDays < 365)
+        return $"{(int)(span.TotalDays / 30)} months ago";
+      return $"{(int)(span.TotalDays / 365)} years ago";
+    }
+  }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<InnerPeace.Entities.Specialization>
+@{
     ViewData["Title"] = "Find Therapist";
 }
 
@@ -14,16 +15,12 @@
         <h2 id="step-title">Step 1: Tell us what you're going through</h2>
         
         <div class="step active" data-step="1">
-            
-            <button class="option-button" data-value="relationship">Relationship issues</button>
-            <button class="option-button" data-value="depression">Depression or mood</button>
-            <button class="option-button" data-value="Sleeping">Sleeping problems</button>
-            <button class="option-button" data-value="Anger">Anger management</button>
-            <button class="option-button" data-value="other">Other</button>
-            
+            @foreach (var specialization in Model)
+            {
+                <button class="option-button" data-value="@specialization.Name">@specialization.Name</button>
+            }
         </div>
-
-
+        
         <div class="step" data-step="2">
             <div class="options">
                 <button class="option-button" data-value="<1month">Less than a month</button>
@@ -38,7 +35,6 @@
                 <button class="option-button" data-value="male">Male</button>
                 <button class="option-button" data-value="female">Female</button>
                 <button class="option-button" data-value="anyone">Doesn't matter</button>
-
             </div>
         </div>
 

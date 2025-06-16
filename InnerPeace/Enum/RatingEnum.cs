@@ -2,9 +2,9 @@ namespace InnerPeace.Entities;
 
 public enum RatingEnum
 {
-    OneStar = 0,
-    TwoStars = 1,
-    ThreeStars = 2,
-    FourStars = 3,
-    FiveStars = 4
+    OneStar = 1,
+    TwoStars = 2,
+    ThreeStars = 3,
+    FourStars = 4,
+    FiveStars = 5
 }

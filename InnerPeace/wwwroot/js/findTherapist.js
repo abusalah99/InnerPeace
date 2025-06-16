@@ -60,9 +60,16 @@
             const formattedSelections = selectedOptions.map((arr, index) =>
                 index === 0 ? arr : arr[0] // Keep array for step 1, single value for others
             );
-            console.log('Selected options:', formattedSelections);
-            alert('Form submitted with selections:\n' +
-                JSON.stringify(formattedSelections, null, 2));
+            let specialization = formattedSelections[0].join(",");
+            let gender = formattedSelections[2];
+            
+            let url = `/therapist?specializationFilter=${encodeURIComponent(specialization)}`;
+
+            if (gender === "male" || gender === "female") {
+                url += `&gender=${encodeURIComponent(gender)}`;
+            }
+            
+            window.location.href = url;
         }
     }
 

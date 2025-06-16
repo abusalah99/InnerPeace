@@ -30,16 +30,27 @@
     </div>
     <nav class="nav-links">
         <a asp-controller="Therapist" asp-action="Index">Therapists List</a>
-        <a asp-controller="MoodTracking" asp-action="Index">Mood Tracking</a>
-        <a asp-controller="FindTherapist" asp-action="Index">Find A Therapist</a>
-        <a asp-controller="Appointment" asp-action="Index">Appointments</a>
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a asp-controller="MoodTracking" asp-action="Index">Mood Tracking</a>
+            <a asp-controller="FindTherapist" asp-action="Index">Find A Therapist</a>
+            <a asp-controller="Appointment" asp-action="Index">Appointments</a>
+        }
         <a asp-controller="Support" asp-action="Index">Support</a>
     </nav>
 
-    <div class="auth-buttons">
-        <a href="" class="btn-outline">Sign in</a>
-        <a href="" class="btn-filled">Sign up</a>
-    </div>
+@if (!User.Identity?.IsAuthenticated ?? true)
+    {
+        <div class="auth-buttons">
+            <a asp-controller="Account" asp-action="Login"class="btn-outline">Sign in</a>
+            <a asp-controller="Account" asp-action="Register" class="btn-filled">Sign up</a>
+        </div>
+    }
+else
+{
+    <a asp-controller="Account" asp-action="Logout"class="btn-outline">Sign out</a> 
+}
+    
 </header>
 
 <main class="container p-5">
@@ -73,17 +84,22 @@
                 <li><a href="#">Emergency numbers</a></li>
             </ul>
         </div>
-        
+    @if (!User.Identity?.IsAuthenticated ?? true)
+    {
         <div class="footer-section">
             <h3 class="footer-title">Join us</h3>
+
             <div class="join-section">
                 <a href="#" class="join-btn join-client">Join as a Client</a>
                 <div class="join-divider">Or</div>
                 <a href="#" class="join-btn join-therapist">Join as a Therapist</a>
                 <p class="sign-in-text">If you have an account <a href="#">Sign in</a></p>
             </div>
+
         </div>
+    }
     </div>
+
     
     <div class="footer-bottom">
         <p>All rights reserved to Inner Peace 2025</p>
@@ -95,6 +111,11 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/carousel.js"></script>
 
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/06/16/05/20250616053525-ELGIUGD6.js"></script>
+}
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

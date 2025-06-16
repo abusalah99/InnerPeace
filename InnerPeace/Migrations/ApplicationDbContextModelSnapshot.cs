@@ -29,7 +29,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -41,7 +41,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
@@ -55,10 +55,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("EducationId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -68,6 +65,9 @@ namespace InnerPeace.Migrations
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsMale")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -93,11 +93,9 @@ namespace InnerPeace.Migrations
                         .HasColumnType("jsonb");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EducationId");
 
                     b.HasIndex("Email")
                         .IsUnique();
@@ -160,12 +158,13 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
-                    b.Property<string>("Degree")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("EducationDegreeId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateOnly>("EndDate")
                         .HasColumnType("date");
@@ -179,11 +178,37 @@ namespace InnerPeace.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("EducationDegreeId");
+
                     b.ToTable("Educations");
+                });
+
+            modelBuilder.Entity("InnerPeace.Entities.EducationDegree", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp");
+
+                    b.Property<string>("Degree")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EducationDegree");
                 });
 
             modelBuilder.Entity("InnerPeace.Entities.Language", b =>
@@ -193,7 +218,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -201,7 +226,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
@@ -215,7 +240,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<int>("Mood")
                         .HasColumnType("integer");
@@ -224,19 +249,14 @@ namespace InnerPeace.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("UserId1")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("MoodsTracking");
                 });
@@ -257,7 +277,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("uuid");
@@ -265,11 +285,14 @@ namespace InnerPeace.Migrations
                     b.Property<int>("ProvidingEffectiveSolution")
                         .HasColumnType("integer");
 
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("UnderstandingOfTheSituation")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -280,6 +303,9 @@ namespace InnerPeace.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
+
+                    b.HasIndex("SessionId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -295,16 +321,24 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime>("DateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("DurationId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("HostingUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MeetingId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Note")
                         .HasMaxLength(1000)
@@ -317,22 +351,21 @@ namespace InnerPeace.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
-                    b.Property<Guid>("RatingId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ViewerUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("DurationId");
-
-                    b.HasIndex("RatingId");
 
                     b.HasIndex("UserId");
 
@@ -346,13 +379,13 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<int>("Duration")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
@@ -366,14 +399,14 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
@@ -387,10 +420,10 @@ namespace InnerPeace.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -418,7 +451,7 @@ namespace InnerPeace.Migrations
                         .HasColumnType("character varying(14)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 
@@ -429,17 +462,6 @@ namespace InnerPeace.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("InnerPeace.Entities.Doctor", b =>
-                {
-                    b.HasOne("InnerPeace.Entities.Education", "Education")
-                        .WithMany("Doctors")
-                        .HasForeignKey("EducationId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Education");
                 });
 
             modelBuilder.Entity("InnerPeace.Entities.DoctorCountry", b =>
@@ -499,6 +521,25 @@ namespace InnerPeace.Migrations
                     b.Navigation("Specialization");
                 });
 
+            modelBuilder.Entity("InnerPeace.Entities.Education", b =>
+                {
+                    b.HasOne("InnerPeace.Entities.Doctor", "Doctor")
+                        .WithMany("Educations")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InnerPeace.Entities.EducationDegree", "EducationDegree")
+                        .WithMany("Educations")
+                        .HasForeignKey("EducationDegreeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("EducationDegree");
+                });
+
             modelBuilder.Entity("InnerPeace.Entities.MoodTracking", b =>
                 {
                     b.HasOne("InnerPeace.Entities.User", "User")
@@ -506,10 +547,6 @@ namespace InnerPeace.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("InnerPeace.Entities.User", null)
-                        .WithMany("Moods")
-                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });
@@ -520,6 +557,12 @@ namespace InnerPeace.Migrations
                         .WithMany("Ratings")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InnerPeace.Entities.Session", "Session")
+                        .WithOne("Rating")
+                        .HasForeignKey("InnerPeace.Entities.Rating", "SessionId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.HasOne("InnerPeace.Entities.User", "User")
@@ -533,6 +576,8 @@ namespace InnerPeace.Migrations
                         .HasForeignKey("UserId1");
 
                     b.Navigation("Doctor");
+
+                    b.Navigation("Session");
 
                     b.Navigation("User");
                 });
@@ -551,12 +596,6 @@ namespace InnerPeace.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("InnerPeace.Entities.Rating", "Rating")
-                        .WithMany("Sessions")
-                        .HasForeignKey("RatingId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
-
                     b.HasOne("InnerPeace.Entities.User", "User")
                         .WithMany("Sessions")
                         .HasForeignKey("UserId")
@@ -566,8 +605,6 @@ namespace InnerPeace.Migrations
                     b.Navigation("Doctor");
 
                     b.Navigation("Duration");
-
-                    b.Navigation("Rating");
 
                     b.Navigation("User");
                 });
@@ -585,14 +622,16 @@ namespace InnerPeace.Migrations
 
                     b.Navigation("DoctorSpecializations");
 
+                    b.Navigation("Educations");
+
                     b.Navigation("Ratings");
 
                     b.Navigation("Sessions");
                 });
 
-            modelBuilder.Entity("InnerPeace.Entities.Education", b =>
+            modelBuilder.Entity("InnerPeace.Entities.EducationDegree", b =>
                 {
-                    b.Navigation("Doctors");
+                    b.Navigation("Educations");
                 });
 
             modelBuilder.Entity("InnerPeace.Entities.Language", b =>
@@ -600,9 +639,9 @@ namespace InnerPeace.Migrations
                     b.Navigation("DoctorsLanguage");
                 });
 
-            modelBuilder.Entity("InnerPeace.Entities.Rating", b =>
+            modelBuilder.Entity("InnerPeace.Entities.Session", b =>
                 {
-                    b.Navigation("Sessions");
+                    b.Navigation("Rating");
                 });
 
             modelBuilder.Entity("InnerPeace.Entities.SessionDuration", b =>
@@ -617,8 +656,6 @@ namespace InnerPeace.Migrations
 
             modelBuilder.Entity("InnerPeace.Entities.User", b =>
                 {
-                    b.Navigation("Moods");
-
                     b.Navigation("Ratings");
 
                     b.Navigation("Sessions");

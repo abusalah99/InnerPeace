@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\appointment.css"
     },
     {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\css\\booking.css",
+      "PackagePath": "staticwebassets\\css\\booking.css"
+    },
+    {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\css\\layout.css",
       "PackagePath": "staticwebassets\\css\\layout.css"
     },
@@ -55,6 +59,10 @@
     {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\js\\findTherapist.js",
       "PackagePath": "staticwebassets\\js\\findTherapist.js"
+    },
+    {
+      "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\js\\therapist-filter.js",
+      "PackagePath": "staticwebassets\\js\\therapist-filter.js"
     },
     {
       "Id": "C:\\Users\\abu salah\\RiderProjects\\InnerPeace\\InnerPeace\\wwwroot\\lib\\bootstrap\\LICENSE",
